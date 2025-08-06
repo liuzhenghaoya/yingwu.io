@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鹦鹉世界 - 在线购票</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#FF7D00',
+                        accent: '#36B37E',
+                        dark: '#172B4D',
+                        light: '#F4F5F7'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            }
+            .card-hover {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+            .ticket-shadow {
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+            }
+            .stamp {
+                position: relative;
+                display: inline-block;
+                transform: rotate(-15deg);
+                padding: 0.5rem 2rem;
+                overflow: hidden;
+                color: white;
+            }
+            .stamp::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: repeating-linear-gradient(
+                    45deg,
+                    rgba(255,255,255,0.1),
+                    rgba(255,255,255,0.1) 10px,
+                    rgba(255,255,255,0.2) 10px,
+                    rgba(255,255,255,0.2) 20px
+                );
+            }
+        }
+    </style>
+</head>
+<body class="font-inter bg-light text-dark antialiased">
+    <!-- 导航栏 -->
+    <header id="navbar" class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm transition-all duration-300">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16 md:h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+                        <i class="fa fa-paw text-white text-xl"></i>
+                    </div>
+                    <span class="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">鹦鹉世界</span>
+                </a>
+                
+                <!-- 桌面导航 -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="font-medium text-gray-600 hover:text-primary transition-colors py-1">首页</a>
+                    <a href="exhibition.html" class="font-medium text-gray-600 hover:text-primary transition-colors py-1">鹦鹉展览</a>
+                    <a href="species.html" class="font-medium text-gray-600 hover:text-primary transition-colors py-1">鹦鹉品种</a>
+                    <a href="events.html" class="font-medium text-gray-600 hover:text-primary transition-colors py-1">活动日程</a>
+                    <a href="education.html" class="font-medium text-gray-600 hover:text-primary transition-colors py-1">科普教育</a>
+                    <a href="guide.html" class="font-medium text-gray-600 hover:text-primary transition-colors py-1">参观指南</a>
+                </nav>
+                
+                <!-- 快捷功能 -->
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 text-gray-600 hover:text-primary transition-colors relative">
+                        <i class="fa fa-search text-lg"></i>
+                    </button>
+                    <a href="tickets.html" class="hidden md:block bg-secondary hover:bg-secondary/90 text-white px-4 py-2 rounded-full transition-colors">
+                        购票
+                    </a>
+                    <!-- 移动端菜单按钮 -->
+                    <button id="menu-toggle" class="md:hidden p-2 text-gray-600 hover:text-primary transition-colors">
+                        <i class="fa fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-3 space-y-3">
+                <a href="index.html" class="block py-2 font-medium text-gray-600 hover:text-primary transition-colors">首页</a>
+                <a href="exhibition.html" class="block py-2 font-medium text-gray-600 hover:text-primary transition-colors">鹦鹉展览</a>
+                <a href="species.html" class="block py-2 font-medium text-gray-600 hover:text-primary transition-colors">鹦鹉品种</a>
+                <a href="events.html" class="block py-2 font-medium text-gray-600 hover:text-primary transition-colors">活动日程</a>
+                <a href="education.html" class="block py-2 font-medium text-gray-600 hover:text-primary transition-colors">科普教育</a>
+                <a href="guide.html" class="block py-2 font-medium text-gray-600 hover:text-primary transition-colors">参观指南</a>
+                <a href="tickets.html" class="block text-center bg-secondary hover:bg-secondary/90 text-white px-4 py-2 rounded-full transition-colors">
+                    购票
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 页面标题横幅 -->
+    <section class="relative h-[40vh] min-h-[300px] flex items-center justify-center overflow-hidden">
+        <img src="https://picsum.photos/id/1069/1920/1080" alt="鹦鹉世界门票购买页面横幅，展示多彩鹦鹉" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-dark/60"></div>
+        <div class="container mx-auto px-4 relative z-10 text-center">
+            <h1 class="text-[clamp(2rem,5vw,3rem)] font-bold text-white text-shadow mb-4">在线购票</h1>
+            <p class="text-[clamp(1rem,2vw,1.25rem)] text-white/90 max-w-2xl mx-auto">提前购买门票，省去排队时间，开启精彩的鹦鹉世界之旅</p>
+        </div>
+    </section>
+
+    <!-- 购票流程 -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex flex-wrap justify-between items-center mb-12">
+                    <div class="w-full md:w-auto mb-6 md:mb-0">
+                        <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold">购票流程</h2>
+                        <p class="text-gray-600">三步轻松完成购票，便捷入园</p>
+                    </div>
+                    
+                    <div class="flex items-center space-x-1 bg-light rounded-full px-4 py-2">
+                        <div class="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white">1</div>
+                        <div class="h-1 bg-primary flex-grow max-w-10"></div>
+                        <div class="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white">2</div>
+                        <div class="h-1 bg-primary flex-grow max-w-10"></div>
+                        <div class="flex items-center justify-center w-8 h-8 rounded-full bg-gray-300 text-gray-600">3</div>
+                        <div class="ml-4 text-sm font-medium">选择票种与日期</div>
+                    </div>
+                </div>
+                
+                <!-- 日期选择 -->
+                <div class="bg-light rounded-xl p-6 mb-10">
+                    <h3 class="text-xl font-bold mb-4">选择参观日期</h3>
+                    <p class="text-gray-600 mb-6">请选择您计划参观的日期（门票有效期为所选日期当天）</p>
+                    
+                    <div class="grid grid-cols-7 gap-2 text-center mb-2">
+                        <div class="text-sm font-medium text-gray-500 py-2">日</div>
+                        <div class="text-sm font-medium text-gray-500 py-2">一</div>
+                        <div class="text-sm font-medium text-gray-500 py-2">二</div>
+                        <div class="text-sm font-medium text-gray-500 py-2">三</div>
+                        <div class="text-sm font-medium text-gray-500 py-2">四</div>
+                        <div class="text-sm font-medium text-gray-500 py-2">五</div>
+                        <div class="text-sm font-medium text-gray-500 py-2">六</div>
+                    </div>
+                    
+                    <div class="grid grid-cols-7 gap-2 text-center">
+                        <!-- 上个月日期 -->
+                        <div class="py-3 text-gray-400 cursor-not-allowed">27</div>
+                        <div class="py-3 text-gray-400 cursor-not-allowed">28</div>
+                        <div class="py-3 text-gray-400 cursor-not-allowed">29</div>
+                        <div class="py-3 text-gray-400 cursor-not-allowed">30</div>
+                        <div class="py-3 text-gray-400 cursor-not-allowed">31</div>
+                        
+                        <!-- 当月日期 -->
+                        <div class="py-3 rounded-full hover:bg-primary/10 cursor-pointer transition-colors">1</div>
+                        <div class="py-3 rounded-full hover:bg-primary/10 cursor-pointer transition-colors">2</div>
+                        <div class="py-3 rounded-full hover:bg-primary/10 cursor-pointer transition-colors">3</div>
+                        <div class="py-3 rounded-full hover:bg-primary/10 cursor-pointer transition-colors">4</div>
+                        <div class="py-3 rounded-full hover:bg-primary/10 cursor-pointer transition-colors">5</div>
+                        <div class="py-3 rounded-full hover:bg-primary/10 cursor-pointer transition-colors">6</div>
+                        <div class="py-3 rounded-full hover:bg-primary/10 cursor-pointer transition-colors">7</div>
+                        <div class="py-3 rounded-full hover:bg-primary/10 cursor-pointer transition-colors">8</div>
+                        <div class="py-3 rounded-full bg-primary text-white cursor-pointer">9</div> <!-- 今天 -->
+                        <div class="py-3 rounded-full hover:bg-primary/10 cursor-pointer transition-colors">10</div>
+                        <div class="py-3 rounded-full hover:bg-primary/10 cursor-pointer transition-colors">11</div>
+                        <div class="py-3 rounded-full hover:bg-primary/10 cursor-pointer transition-colors">12</div>
+                        <div class="py-3 rounded-full hover:bg-primary/10 cursor-pointer transition-colors">13</div>
+                        <div class="py-3 rounded-full hover:bg-primary/10 cursor-pointer transition-colors">14</div>
+                        <div class="py-3 rounded-full hover:bg-primary/10 cursor-pointer transition-colors">15</div>
+                        <div class="py-3 rounded-full hover:bg-primary/10 cursor-pointer transition-colors">16</div>
+                        <div class="py-3 rounded-full hover:bg-primary/10 cursor-pointer transition-colors">17</div>
+                        <div class="py-3 rounded-full hover:bg-primary/10 cursor-pointer transition-colors">18</div>
+                        <div class="py-3 rounded-full hover:bg-primary/10 cursor-pointer transition-colors">19</div>
+                        <div class="py-3 rounded-full hover:bg-primary/10 cursor-pointer transition-colors">20</div>
+                        <div class="py-3 rounded-full hover:bg-primary/10 cursor-pointer transition-colors">21</div>
+                        <div class="py-3 rounded-full text-gray-400 cursor-not-allowed">22</div> <!-- 周一闭馆 -->
+                        <div class="py-3 rounded-full hover:bg-primary/10 cursor-pointer transition-colors">23</div>
+                        <div class="py-3 rounded-full hover:bg-primary/10 cursor-pointer transition-colors">24</div>
+                        <div class="py-3 rounded-full hover:bg-primary/10 cursor-pointer transition-colors">25</div>
+                        <div class="py-3 rounded-full hover:bg-primary/10 cursor-pointer transition-colors">26</div>
+                        <div class="py-3 rounded-full hover:bg-primary/10 cursor-pointer transition-colors">27</div>
+                        <div class="py-3 rounded-full hover:bg-primary/10 cursor-pointer transition-colors">28</div>
+                    </div>
+                    
+                    <div class="mt-6 text-sm text-gray-500">
+                        <p><i class="fa fa-info-circle mr-1"></i> 园区每周一闭馆（法定节假日除外），请合理安排您的参观时间</p>
+                    </div>
+                </div>
+                
+                <!-- 票种选择 -->
+                <div class="space-y-6 mb-10">
+                    <h3 class="text-xl font-bold">选择票种</h3>
+                    <p class="text-gray-600">请根据您的需求选择合适的票种</p>
+                    
+                    <!-- 成人票 -->
+                    <div class="border border-gray-200 rounded-xl overflow-hidden ticket-shadow card-hover">
+                        <div class="flex flex-col md:flex-row">
+                            <div class="p-6 flex-grow">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                                    <div>
+                                        <h4 class="text-lg font-bold">成人票</h4>
+                                        <p class="text-gray-600 text-sm">适用于18-64周岁成人</p>
+                                    </div>
+                                    <div class="mt-2 md:mt-0">
+                                        <span class="text-2xl font-bold text-primary">¥120</span>
+                                        <span class="text-gray-500 ml-1">/人</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 text-sm mb-4">包含园区所有常规展区参观、免费定时讲解服务、互动体验区基础项目</p>
+                            </div>
+                            <div class="bg-light p-6 flex items-center justify-center md:w-48">
+                                <div class="flex items-center border border-gray-300 rounded-full">
+                                    <button class="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-200 rounded-l-full transition-colors" onclick="decreaseQuantity(this)">-</button>
+                                    <input type="number" value="0" min="0" max="10" class="w-12 h-10 text-center border-x border-gray-300 focus:outline-none" onchange="updateTotal()">
+                                    <button class="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-200 rounded-r-full transition-colors" onclick="increaseQuantity(this)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 学生票 -->
+                    <div class="border border-gray-200 rounded-xl overflow-hidden ticket-shadow card-hover">
+                        <div class="flex flex-col md:flex-row">
+                            <div class="p-6 flex-grow">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                                    <div>
+                                        <h4 class="text-lg font-bold">学生票</h4>
+                                        <p class="text-gray-600 text-sm">适用于全日制大中小学生（凭有效学生证）</p>
+                                    </div>
+                                    <div class="mt-2 md:mt-0">
+                                        <span class="text-2xl font-bold text-primary">¥80</span>
+                                        <span class="text-gray-500 ml-1">/人</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 text-sm mb-4">包含园区所有常规展区参观、免费定时讲解服务、互动体验区基础项目</p>
+                                <p class="text-sm text-yellow-600"><i class="fa fa-exclamation-circle mr-1"></i> 入园需出示有效学生证</p>
+                            </div>
+                            <div class="bg-light p-6 flex items-center justify-center md:w-48">
+                                <div class="flex items-center border border-gray-300 rounded-full">
+                                    <button class="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-200 rounded-l-full transition-colors" onclick="decreaseQuantity(this)">-</button>
+                                    <input type="number" value="0" min="0" max="10" class="w-12 h-10 text-center border-x border-gray-300 focus:outline-none" onchange="updateTotal()">
+                                    <button class="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-200 rounded-r-full transition-colors" onclick="increaseQuantity(this)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 儿童票 -->
+                    <div class="border border-gray-200 rounded-xl overflow-hidden ticket-shadow card-hover">
+                        <div class="flex flex-col md:flex-row">
+                            <div class="p-6 flex-grow">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                                    <div>
+                                        <h4 class="text-lg font-bold">儿童票</h4>
+                                        <p class="text-gray-600 text-sm">适用于1.2-1.5米儿童</p>
+                                    </div>
+                                    <div class="mt-2 md:mt-0">
+                                        <span class="text-2xl font-bold text-primary">¥60</span>
+                                        <span class="text-gray-500 ml-1">/人</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 text-sm mb-4">包含园区所有常规展区参观、免费定时讲解服务、互动体验区基础项目</p>
+                                <p class="text-sm text-yellow-600"><i class="fa fa-exclamation-circle mr-1"></i> 1.2米以下儿童免费，需由成人陪同入园</p>
+                            </div>
+                            <div class="bg-light p-6 flex items-center justify-center md:w-48">
+                                <div class="flex items-center border border-gray-300 rounded-full">
+                                    <button class="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-200 rounded-l-full transition-colors" onclick="decreaseQuantity(this)">-</button>
+                                    <input type="number" value="1" min="0" max="10" class="w-12 h-10 text-center border-x border-gray-300 focus:outline-none" onchange="updateTotal()">
+                                    <button class="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-200 rounded-r-full transition-colors" onclick="increaseQuantity(this)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 老人票 -->
+                    <div class="border border-gray-200 rounded-xl overflow-hidden ticket-shadow card-hover">
+                        <div class="flex flex-col md:flex-row">
+                            <div class="p-6 flex-grow">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                                    <div>
+                                        <h4 class="text-lg font-bold">老人票</h4>
+                                        <p class="text-gray-600 text-sm">适用于65周岁以上老年人（凭有效身份证件）</p>
+                                    </div>
+                                    <div class="mt-2 md:mt-0">
+                                        <span class="text-2xl font-bold text-primary">¥60</span>
+                                        <span class="text-gray-500 ml-1">/人</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 text-sm mb-4">包含园区所有常规展区参观、免费定时讲解服务、互动体验区基础项目</p>
+                                <p class="text-sm text-yellow-600"><i class="fa fa-exclamation-circle mr-1"></i> 入园需出示有效身份证件</p>
+                            </div>
+                            <div class="bg-light p-6 flex items-center justify-center md:w-48">
+                                <div class="flex items-center border border-gray-300 rounded-full">
+                                    <button class="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-200 rounded-l-full transition-colors" onclick="decreaseQuantity(this)">-</button>
+                                    <input type="number" value="0" min="0" max="10" class="w-12 h-10 text-center border-x border-gray-300 focus:outline-none" onchange="updateTotal()">
+                                    <button class="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-200 rounded-r-full transition-colors" onclick="increaseQuantity(this)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 家庭套票 -->
+                    <div class="border-2 border-secondary rounded-xl overflow-hidden ticket-shadow card-hover relative">
+                        <div class="absolute top-0 right-0">
+                            <div class="stamp bg-secondary">
+                                <span class="font-bold relative z-10">特惠</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col md:flex-row">
+                            <div class="p-6 flex-grow">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                                    <div>
+                                        <h4 class="text-lg font-bold">家庭套票</h4>
+                                        <p class="text-gray-600 text-sm">适用于2名成人+1名儿童（1.2-1.5米）</p>
+                                    </div>
+                                    <div class="mt-2 md:mt-0">
+                                        <span class="text-2xl font-bold text-primary">¥280</span>
+                                        <span class="text-gray-500 line-through ml-2">¥300</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 text-sm mb-4">包含园区所有常规展区参观、免费定时讲解服务、互动体验区基础项目</p>
+                                <p class="text-sm text-green-600"><i class="fa fa-check-circle mr-1"></i> 比单独购买节省¥20</p>
+                            </div>
+                            <div class="bg-light p-6 flex items-center justify-center md:w-48">
+                                <div class="flex items-center border border-gray-300 rounded-full">
+                                    <button class="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-200 rounded-l-full transition-colors" onclick="decreaseQuantity(this)">-</button>
+                                    <input type="number" value="0" min="0" max="5" class="w-12 h-10 text-center border-x border-gray-300 focus:outline-none" onchange="updateTotal()">
+                                    <button class="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-200 rounded-r-full transition-colors" onclick="increaseQuantity(this)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 订单信息 -->
+                <div class="bg-light rounded-xl p-6 border border-gray-200">
+                    <h3 class="text-xl font-bold mb-6">订单信息</h3>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">参观日期</span>
+                            <span class="font-medium">2023年8月9日（周三）</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">成人票 x 0</span>
+                            <span class="font-medium">¥0</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">学生票 x 0</span>
+                            <span class="font-medium">¥0</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">儿童票 x 1</span>
+                            <span class="font-medium">¥60</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">老人票 x 0</span>
+                            <span class="font-medium">¥0</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">家庭套票 x 0</span>
+                            <span class="font-medium">¥0</span>
+                        </div>
+                        <div class="pt-3 border-t border-gray-300 mt-3 flex justify-between">
+                            <span class="font-semibold">总计</span>
+                            <span class="text-2xl font-bold text-primary" id="total-price">¥60</span>
+                        </div>
+                    </div>
+                    
+                    <button id="checkout-btn" class="w-full bg-secondary hover:bg-secondary/90 text-white py-3 rounded-lg font-medium transition-colors text-lg flex items-center justify-center">
+                        确认购票并支付 <i class="fa fa-arrow-right ml-2"></i>
+                    </button>
+                    
+                    <div class="mt-4 text-sm text-gray-500 text-center">
+                        <p><i class="fa fa-lock mr-1"></i> 支付安全保障 | 支持微信支付、支付宝</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 购票须知 -->
+    <section class="py-16 bg-white border-t border-gray-200">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold mb-6 text-center">购票须知</h2>
+                
+                <div class="space-y-4 text-gray-600">
+                    <div class="flex items-start">
+                        <i class="fa fa-info-circle text-primary mt-1 mr-3 flex-shrink-0"></i>
+                        <p>门票有效期为所选参观日期当天，过期作废，请合理安排您的行程。</p>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa fa-info-circle text-primary mt-1 mr-3 flex-shrink-0"></i>
+                        <p>购票成功后，电子票将发送至您的手机短信，请妥善保存，入园时出示二维码扫码入园。</p>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa fa-info-circle text-primary mt-1 mr-3 flex-shrink-0"></i>
+                        <p>学生票、老人票等优惠票种，入园时需出示有效证件，否则将无法入园。</p>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa fa-info-circle text-primary mt-1 mr-3 flex-shrink-0"></i>
+                        <p>门票一经售出，除园区闭馆等特殊情况外，不予退换，请确认信息无误后再进行购买。</p>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa fa-info-circle text-primary mt-1 mr-3 flex-shrink-0"></i>
+                        <p>1.2米以下儿童免费入园，但需由购票成人陪同，一名成人最多可携带两名免票儿童。</p>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa fa-info-circle text-primary mt-1 mr-3 flex-shrink-0"></i>
+                        <p>园区可能因天气、设备维护等原因调整开放时间或部分展区，请以当天实际开放情况为准。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="py-16 bg-light">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold mb-8 text-center">购票常见问题</h2>
+                
+                <div class="space-y-6">
+                    <div class="bg-white rounded-xl p-6 shadow-sm">
+                        <h3 class="font-semibold text-lg mb-2">如何获取电子票？</h3>
+                        <p class="text-gray-600">购票成功后，电子票将通过短信形式发送至您购票时填写的手机号码，您也可以在"我的订单"中查看电子票。</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl p-6 shadow-sm">
+                        <h3 class="font-semibold text-lg mb-2">可以更换参观日期吗？</h3>
+                        <p class="text-gray-600">如需更改参观日期，请在原计划参观日期前3天联系客服申请改期，每次订单仅限改期一次，且只能更改至未来30天内的日期。</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl p-6 shadow-sm">
+                        <h3 class="font-semibold text-lg mb-2">如果我当天无法参观，可以退票吗？</h3>
+                        <p class="text-gray-600">门票售出后，原则上不予退票。如遇特殊情况（如突发疾病、自然灾害等），请在参观日期当天24:00前联系客服，并提供相关证明，经审核后可办理退票，将收取票价10%的手续费。</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl p-6 shadow-sm">
+                        <h3 class="font-semibold text-lg mb-2">电子票可以转赠他人使用吗？</h3>
+                        <p class="text-gray-600">可以。您可以将电子票二维码截图或转发给他人使用，但每张门票仅限使用一次，一旦核销即失效。</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl p-6 shadow-sm">
+                        <h3 class="font-semibold text-lg mb-2">购票后未收到短信怎么办？</h3>
+                        <p class="text-gray-600">首先请检查您的手机是否拦截了短信，您也可以登录官网或公众号，在"我的订单"中查看电子票。如仍有问题，请联系客服：010-12345678。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- 关于我们 -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center">
+                            <i class="fa fa-paw text-primary text-xl"></i>
+                        </div>
+                        <span class="text-xl font-bold">鹦鹉世界</span>
+                    </div>
+                    <p class="text-gray-400 mb-6">国内领先的鹦鹉主题展览馆，致力于鹦鹉保护、科普教育和观赏体验，让更多人了解鹦鹉的魅力。</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-primary flex items-center justify-center transition-colors"><a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-primary flex items-center justify-center transition-colors">
+                            <i class="fa fa-weixin"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-primary flex items-center justify-center transition-colors">
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-primary flex items-center justify-center transition-colors">
+                            <i class="fa fa-youtube-play"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 快速链接 -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">快速链接</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">首页</a></li>
+                        <li><a href="exhibition.html" class="text-gray-400 hover:text-white transition-colors">鹦鹉展览</a></li>
+                        <li><a href="species.html" class="text-gray-400 hover:text-white transition-colors">鹦鹉品种</a></li>
+                        <li><a href="events.html" class="text-gray-400 hover:text-white transition-colors">活动日程</a></li>
+                        <li><a href="education.html" class="text-gray-400 hover:text-white transition-colors">科普教育</a></li>
+                        <li><a href="guide.html" class="text-gray-400 hover:text-white transition-colors">参观指南</a></li>
+                    </ul>
+                </div>
+                
+                <!-- 帮助中心 -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">帮助中心</h4>
+                    <ul class="space-y-3">
+                        <li><a href="faq.html" class="text-gray-400 hover:text-white transition-colors">常见问题</a></li>
+                        <li><a href="tickets.html" class="text-gray-400 hover:text-white transition-colors">门票信息</a></li>
+                        <li><a href="guide.html#directions" class="text-gray-400 hover:text-white transition-colors">交通指南</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors">联系我们</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-white transition-colors">隐私政策</a></li>
+                        <li><a href="terms.html" class="text-gray-400 hover:text-white transition-colors">服务条款</a></li>
+                    </ul>
+                </div>
+                
+                <!-- 联系我们 -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">联系我们</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fa fa-map-marker text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-400">北京市朝阳区动物园区100号鹦鹉世界</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-phone text-primary mr-3"></i>
+                            <span class="text-gray-400">010-12345678</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-envelope text-primary mr-3"></i>
+                            <span class="text-gray-400">tickets@parrotworld.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-clock-o text-primary mr-3"></i>
+                            <span class="text-gray-400">每日 9:00-17:00（周一闭馆）</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2023 鹦鹉世界. 保留所有权利. 支持合法合规宠物保护</p>
+                    <div class="flex space-x-6">
+                        <a href="terms.html" class="text-gray-500 hover:text-gray-300 text-sm transition-colors">服务条款</a>
+                        <a href="privacy.html" class="text-gray-500 hover:text-gray-300 text-sm transition-colors">隐私政策</a>
+                        <a href="laws.html" class="text-gray-500 hover:text-gray-300 text-sm transition-colors">法律声明</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 支付成功弹窗 (默认隐藏) -->
+    <div id="success-modal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4 transform transition-all">
+            <div class="text-center">
+                <div class="w-16 h-16 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-6">
+                    <i class="fa fa-check text-accent text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">购票成功！</h3>
+                <p class="text-gray-600 mb-6">您的电子票已发送至手机短信，请注意查收</p>
+                <div class="bg-light rounded-lg p-4 mb-6 text-left">
+                    <p class="text-sm text-gray-500 mb-1">订单编号：P20230805123456</p>
+                    <p class="text-sm text-gray-500 mb-1">参观日期：2023年8月9日</p>
+                    <p class="text-sm text-gray-500">票种：儿童票 x 1</p>
+                </div>
+                <button id="close-modal" class="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-lg font-medium transition-colors">
+                    完成
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary hover:bg-primary/90 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg z-50 transition-all duration-300 opacity-0 invisible">
+        <i class="fa fa-chevron-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // 移动端菜单切换
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.remove('shadow-sm');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.add('shadow-sm');
+            }
+        });
+        
+        // 返回顶部按钮
+        const backToTopBtn = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.remove('opacity-0', 'invisible');
+                backToTopBtn.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'invisible');
+                backToTopBtn.classList.remove('opacity-100', 'visible');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // 数量增减功能
+        function increaseQuantity(button) {
+            const input = button.previousElementSibling;
+            const max = parseInt(input.max);
+            let value = parseInt(input.value);
+            
+            if (value < max) {
+                input.value = value + 1;
+                updateTotal();
+            }
+        }
+        
+        function decreaseQuantity(button) {
+            const input = button.nextElementSibling;
+            const min = parseInt(input.min);
+            let value = parseInt(input.value);
+            
+            if (value > min) {
+                input.value = value - 1;
+                updateTotal();
+            }
+        }
+        
+        // 更新总价
+        function updateTotal() {
+            // 获取所有票种的数量和单价
+            const adultCount = parseInt(document.querySelectorAll('input[type="number"]')[0].value);
+            const studentCount = parseInt(document.querySelectorAll('input[type="number"]')[1].value);
+            const childCount = parseInt(document.querySelectorAll('input[type="number"]')[2].value);
+            const seniorCount = parseInt(document.querySelectorAll('input[type="number"]')[3].value);
+            const familyCount = parseInt(document.querySelectorAll('input[type="number"]')[4].value);
+            
+            // 计算总价
+            const total = (adultCount * 120) + (studentCount * 80) + (childCount * 60) + (seniorCount * 60) + (familyCount * 280);
+            
+            // 更新显示
+            document.getElementById('total-price').textContent = `¥${total}`;
+        }
+        
+        // 支付弹窗
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const successModal = document.getElementById('success-modal');
+        const closeModal = document.getElementById('close-modal');
+        
+        checkoutBtn.addEventListener('click', () => {
+            // 检查是否选择了票种
+            const total = parseInt(document.getElementById('total-price').textContent.replace('¥', ''));
+            
+            if (total === 0) {
+                alert('请至少选择一种票种');
+                return;
+            }
+            
+            // 显示支付成功弹窗
+            successModal.classList.remove('hidden');
+            // 阻止背景滚动
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeModal.addEventListener('click', () => {
+            successModal.classList.add('hidden');
+            // 恢复背景滚动
+            document.body.style.overflow = 'auto';
+        });
+        
+        // 点击弹窗外部关闭
+        successModal.addEventListener('click', (e) => {
+            if (e.target === successModal) {
+                successModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

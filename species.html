@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鹦鹉品种 - 鹦鹉世界</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#FF7D00',
+                        accent: '#36B37E',
+                        dark: '#172B4D',
+                        light: '#F4F5F7'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .transition-custom {
+                transition: all 0.3s ease;
+            }
+            .parrot-card {
+                transition: transform 0.4s ease, box-shadow 0.4s ease;
+            }
+            .parrot-card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            }
+            .filter-active {
+                background-color: primary;
+                color: white;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-inter bg-light text-dark antialiased">
+    <!-- 导航栏 -->
+    <header id="navbar" class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm transition-custom">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16 md:h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+                        <i class="fa fa-paw text-white text-xl"></i>
+                    </div>
+                    <span class="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">鹦鹉世界</span>
+                </a>
+                
+                <!-- 桌面导航 -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="font-medium text-gray-600 hover:text-primary transition-custom py-1">首页</a>
+                    <a href="exhibition.html" class="font-medium text-gray-600 hover:text-primary transition-custom py-1">鹦鹉展览</a>
+                    <a href="species.html" class="font-medium text-primary border-b-2 border-primary py-1">鹦鹉品种</a>
+                    <a href="events.html" class="font-medium text-gray-600 hover:text-primary transition-custom py-1">活动日程</a>
+                    <a href="education.html" class="font-medium text-gray-600 hover:text-primary transition-custom py-1">科普教育</a>
+                    <a href="visit.html" class="font-medium text-gray-600 hover:text-primary transition-custom py-1">参观指南</a>
+                </nav>
+                
+                <!-- 快捷功能 -->
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 text-gray-600 hover:text-primary transition-custom relative">
+                        <i class="fa fa-search text-lg"></i>
+                    </button>
+                    <a href="tickets.html" class="hidden md:block bg-secondary hover:bg-secondary/90 text-white px-4 py-2 rounded-full transition-custom">
+                        购票
+                    </a>
+                    <!-- 移动端菜单按钮 -->
+                    <button id="menu-toggle" class="md:hidden p-2 text-gray-600 hover:text-primary transition-custom">
+                        <i class="fa fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-3 space-y-3">
+                <a href="index.html" class="block py-2 font-medium text-gray-600 hover:text-primary transition-custom">首页</a>
+                <a href="exhibition.html" class="block py-2 font-medium text-gray-600 hover:text-primary transition-custom">鹦鹉展览</a>
+                <a href="species.html" class="block py-2 font-medium text-primary">鹦鹉品种</a>
+                <a href="events.html" class="block py-2 font-medium text-gray-600 hover:text-primary transition-custom">活动日程</a>
+                <a href="education.html" class="block py-2 font-medium text-gray-600 hover:text-primary transition-custom">科普教育</a>
+                <a href="visit.html" class="block py-2 font-medium text-gray-600 hover:text-primary transition-custom">参观指南</a>
+                <a href="tickets.html" class="block text-center bg-secondary hover:bg-secondary/90 text-white px-4 py-2 rounded-full transition-custom">
+                    购票
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 页面标题 -->
+        <section class="py-12 bg-primary text-white">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                    <div>
+                        <h1 class="text-[clamp(1.8rem,4vw,3rem)] font-bold mb-2">鹦鹉品种</h1>
+                        <p class="opacity-90">探索来自世界各地的珍稀鹦鹉，了解它们的习性和特点</p>
+                    </div>
+                   
+                </div>
+            </div>
+        </section>
+
+        <!-- 品种分类与筛选 -->
+        <section class="py-12 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold mb-6">按地区筛选</h2>
+                    <div class="flex flex-wrap gap-3">
+                        <button class="filter-btn bg-primary text-white px-5 py-2 rounded-full text-sm font-medium transition-custom">
+                            全部地区
+                        </button>
+                        <button class="filter-btn bg-gray-100 hover:bg-gray-200 px-5 py-2 rounded-full text-sm font-medium transition-custom">
+                            南美洲
+                        </button>
+                        <button class="filter-btn bg-gray-100 hover:bg-gray-200 px-5 py-2 rounded-full text-sm font-medium transition-custom">
+                            非洲
+                        </button>
+                        <button class="filter-btn bg-gray-100 hover:bg-gray-200 px-5 py-2 rounded-full text-sm font-medium transition-custom">
+                            澳洲
+                        </button>
+                        <button class="filter-btn bg-gray-100 hover:bg-gray-200 px-5 py-2 rounded-full text-sm font-medium transition-custom">
+                            亚洲
+                        </button>
+                        <button class="filter-btn bg-gray-100 hover:bg-gray-200 px-5 py-2 rounded-full text-sm font-medium transition-custom">
+                            欧洲
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold mb-6">按体型筛选</h2>
+                    <div class="flex flex-wrap gap-3">
+                        <button class="filter-btn bg-primary text-white px-5 py-2 rounded-full text-sm font-medium transition-custom">
+                            全部体型
+                        </button>
+                        <button class="filter-btn bg-gray-100 hover:bg-gray-200 px-5 py-2 rounded-full text-sm font-medium transition-custom">
+                            小型 (20cm以下)
+                        </button>
+                        <button class="filter-btn bg-gray-100 hover:bg-gray-200 px-5 py-2 rounded-full text-sm font-medium transition-custom">
+                            中型 (20-40cm)
+                        </button>
+                        <button class="filter-btn bg-gray-100 hover:bg-gray-200 px-5 py-2 rounded-full text-sm font-medium transition-custom">
+                            大型 (40cm以上)
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <input type="text" placeholder="搜索鹦鹉品种..." class="w-full pl-12 pr-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    <i class="fa fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- 南美洲鹦鹉 -->
+        <section class="py-16 bg-light">
+            <div class="container mx-auto px-4">
+                <div class="flex items-center mb-10">
+                    <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center mr-3">
+                        <i class="fa fa-map-marker text-white"></i>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">南美洲鹦鹉</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- 鹦鹉1 -->
+                    <a href="scarlet-macaw.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                                <img src="f8f18cb83cee93cd0186b5de17bb2f50.jpg" alt="小鸟吃食" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                                <div class="absolute top-3 right-3 bg-secondary text-white text-xs font-medium px-2 py-1 rounded">
+                                    大型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">小鸟吃食</h3>
+                                <p class="text-gray-600 text-sm mb-4">色彩最艳丽的鹦鹉之一，聪明活泼，寿命可达12年</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 美洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 鹦鹉2 -->
+                    <a href="blue-and-gold.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                                <img src="eaea5e2f6025fb85a500604af8c2f11b.jpg" alt="蓝黄金刚鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                                <div class="absolute top-3 right-3 bg-secondary text-white text-xs font-medium px-2 py-1 rounded">
+                                    大型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">蓝黄金刚鹦鹉</h3>
+                                <p class="text-gray-600 text-sm mb-4">蓝色和黄色相间的羽毛，性格温顺，模仿能力强</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 美洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 鹦鹉3 -->
+                    <a href="species/yellow-headed.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                                <img src="a7be4ae8c8097e1a0888eb78aa2cb9cb.jpg" alt="黄冠亚马逊鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+
+
+
+                                <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    中型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">黄冠亚马逊鹦鹉</h3>
+                                <p class="text-gray-600 text-sm mb-4">黄色头部，绿色身体，语言能力出色，聪明活泼</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 美洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 鹦鹉4 -->
+                    <a href="species/ara-ararauna.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                                <img src="ee1ef090cc9f5b08bba98a52024dbbee.jpg" alt="红绿金刚鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                                <div class="absolute top-3 right-3 bg-secondary text-white text-xs font-medium px-2 py-1 rounded">
+                                    大型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">红绿金刚鹦鹉</h3>
+                                <p class="text-gray-600 text-sm mb-4">红色为主，翅膀绿色，性格活泼，叫声洪亮</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 美洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 非洲鹦鹉 -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="flex items-center mb-10">
+                    <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center mr-3">
+                        <i class="fa fa-map-marker text-white"></i>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">非洲鹦鹉</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- 鹦鹉1 -->
+                    <a href="species/african-grey.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                                <!--<img src="https://picsum.photos/id/1067/500/500" alt="非洲灰鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+
+                                <video src="b5940d3fa63871f17c1e11585c0322d0.mp4" alt="金彩虎皮鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+
+                                <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    中型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">金彩虎皮鹦鹉</h3>
+                                <p class="text-gray-600 text-sm mb-4">最聪明的鹦鹉之一，语言能力极强，能模仿各种声音</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 非洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 鹦鹉2 -->
+                    <a href="species/senegal.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                                <!-- <img src="https://picsum.photos/id/1066/500/500" alt="塞内加尔鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+
+
+
+                                <video src="aa79255a49885b41f372b22fda849d21.mp4" alt="吃菜" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+                                <div class="absolute top-3 right-3 bg-green-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    小型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">虎皮鹦鹉吃蔬菜</h3>
+                                <p class="text-gray-600 text-sm mb-4">绿色身体，黄色和V形胸带，性格安静，适合家庭饲养</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 非洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 鹦鹉3 -->
+                    <a href="species/rose-ringed.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                                <!--  <img src="https://picsum.photos/id/1065/500/500" alt="环颈鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+
+                                 <video src="265a5281503ad366b911188be975c33c.mp4" alt="吃食物" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+                                <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    中型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">牡丹鹦鹉</h3>
+                                <p class="text-gray-600 text-sm mb-4">绿色羽毛，颈部有黑色环纹，适应能力强，分布广泛</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 非洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- 鹦鹉4 -->
+                    <a href="species/rose-ringed.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                                <!--  <img src="https://picsum.photos/id/1065/500/500" alt="环颈鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+
+                                 <video src="c77e54da258f4c014c29fbfb5db38ddb.mp4" alt="吃食物" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+                                <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    中型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">牡丹鹦鹉</h3>
+                                <p class="text-gray-600 text-sm mb-4">绿色羽毛，颈部有黑色环纹，适应能力强，分布广泛</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 非洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 澳洲鹦鹉 -->
+        <section class="py-16 bg-light">
+            <div class="container mx-auto px-4">
+                <div class="flex items-center mb-10">
+                    <div class="w-10 h-10 rounded-full bg-accent flex items-center justify-center mr-3">
+                        <i class="fa fa-map-marker text-white"></i>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">澳洲鹦鹉</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- 鹦鹉1 -->
+                    <a href="species/cockatoo.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                               <!--  <img src="" alt="凤头鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+                               <video src="47bdb209b146a291841cd5f4d21e60d0.mp4" alt="飞手" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+
+
+
+                                <div class="absolute top-3 right-3 bg-secondary text-white text-xs font-medium px-2 py-1 rounded">
+                                    大型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">鹦鹉飞手</h3>
+                                <p class="text-gray-600 text-sm mb-4">以独特的羽冠著称，性格活泼亲人，互动性强</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 澳洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 鹦鹉2 -->
+                    <a href="species/lorikeet.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                                <!--  <img src="https://picsum.photos/id/1064/500/500" alt="牡丹鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+                                <video src="68ffa0d317069a4fbcf12bb0a9f8d1ff.mp4" alt="飞手" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+                                <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    中型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">牡丹鹦鹉</h3>
+                                <p class="text-gray-600 text-sm mb-4">色彩鲜艳，以花蜜为食，舌头特殊，活泼好动</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 澳洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 鹦鹉3 -->
+                    <a href="species/budgerigar.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                               <!-- <img src="https://picsum.photos/id/1057/500/500" alt="母鸟喂食" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+
+                                <video src="0075039ccdbdccf8a1db37879295a5c3.mp4" alt="母鸟喂食" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+                                <div class="absolute top-3 right-3 bg-green-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    小型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">母鸟喂食</h3>
+                                <p class="text-gray-600 text-sm mb-4">最常见的宠物鹦鹉之一，品种多样，易于饲养</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 澳洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- 鹦鹉4 -->
+                    <a href="species/budgerigar.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                               <!-- <img src="https://picsum.photos/id/1057/500/500" alt="母鸟喂食" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+
+                                <video src="d34e5c70e37c38f28a8c55aca51614db.mp4" alt="牡丹喝奶" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+                                <div class="absolute top-3 right-3 bg-green-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    中型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">母鸟喂食</h3>
+                                <p class="text-gray-600 text-sm mb-4">最常见的宠物鹦鹉之一，品种多样，易于饲养</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 澳洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 亚洲鹦鹉 -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="flex items-center mb-10">
+                    <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center mr-3">
+                        <i class="fa fa-map-marker text-white"></i>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">亚洲鹦鹉</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- 鹦鹉1 -->
+                    <a href="species/eclectus.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                                <!--<img src="https://picsum.photos/id/1057/500/500" alt="折衷鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+
+                                <video src="c38b373aa544c12561abcb29da69c043.mp4" alt="公鸟喂食母鸟" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+                                <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    小型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">虎皮鹦鹉公鸟喂食母鸟</h3>
+                                <p class="text-gray-600 text-sm mb-4">雌雄异色明显，雌鸟红色，雄鸟绿色，非常独特</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 澳洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 鹦鹉2 -->
+                    <a href="species/red-breasted.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                                <!--<img src="https://picsum.photos/id/1060/500/500" alt="绯胸鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+                                <video src="01f27c8d351def7d0844aea71e393543.mp4" alt="文鸟鸟" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+                                <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    小型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">文鸟</h3>
+                                <p class="text-gray-600 text-sm mb-4">中国原生鹦鹉，胸部粉红色，上体绿色，聪明好动</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 亚洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+<!-- 鹦鹉3 -->
+                    <a href="species/budgerigar.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                                <img src="e44b49bafac6a4cfa6d8bf47a2ee7138.jpg" alt="母鸟喂食" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+
+                                <!--<video src="" alt="牡丹喝奶" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>-->
+                                <div class="absolute top-3 right-3 bg-green-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    小型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">母鸟喂食</h3>
+                                <p class="text-gray-600 text-sm mb-4">最常见的宠物鹦鹉之一，品种多样，易于饲养</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 澳洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+<!-- 鹦鹉4 -->
+                    <a href="species/budgerigar.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                               <!-- <img src="https://picsum.photos/id/1057/500/500" alt="母鸟喂食" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+
+                                <video src="85348a237fb6823643b7d4b99713d0e0.mp4" alt="牡丹鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+                                <div class="absolute top-3 right-3 bg-green-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    中型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">骑车遛鸟</h3>
+                                <p class="text-gray-600 text-sm mb-4">最常见的宠物鹦鹉之一，品种多样，易于饲养</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 澳洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 欧洲鹦鹉 -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="flex items-center mb-10">
+                    <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center mr-3">
+                        <i class="fa fa-map-marker text-white"></i>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">欧洲鹦鹉</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- 鹦鹉1 -->
+                    <a href="species/eclectus.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                                <!--<img src="https://picsum.photos/id/1057/500/500" alt="折衷鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+
+                                <video src="video(15).mp4" alt="公鸟喂食母鸟" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+                                <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    小型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">虎皮鹦鹉公鸟喂食母鸟</h3>
+                                <p class="text-gray-600 text-sm mb-4">雌雄异色明显，雌鸟红色，雄鸟绿色，非常独特</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 澳洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 鹦鹉2 -->
+                    <a href="species/red-breasted.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                                <!--<img src="https://picsum.photos/id/1060/500/500" alt="绯胸鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+                                <video src="video(5).mp4" alt="文鸟鸟" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+                                <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    小型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">文鸟</h3>
+                                <p class="text-gray-600 text-sm mb-4">中国原生鹦鹉，胸部粉红色，上体绿色，聪明好动</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 亚洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+<!-- 鹦鹉3 -->
+                    <a href="species/budgerigar.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                                <!--<img src="e44b49bafac6a4cfa6d8bf47a2ee7138.jpg" alt="母鸟喂食" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+
+                                <video src="video(16).mp4" alt="牡丹喝奶" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+                                <div class="absolute top-3 right-3 bg-green-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    小型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">母鸟喂食</h3>
+                                <p class="text-gray-600 text-sm mb-4">最常见的宠物鹦鹉之一，品种多样，易于饲养</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 澳洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+<!-- 鹦鹉4 -->
+                    <a href="species/budgerigar.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                               <!-- <img src="https://picsum.photos/id/1057/500/500" alt="母鸟喂食" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+
+                                <video src="video(17).mp4" alt="牡丹鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+                                <div class="absolute top-3 right-3 bg-green-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    中型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">骑车遛鸟</h3>
+                                <p class="text-gray-600 text-sm mb-4">最常见的宠物鹦鹉之一，品种多样，易于饲养</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 澳洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+<!-- 北美洲鹦鹉 -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="flex items-center mb-10">
+                    <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center mr-3">
+                        <i class="fa fa-map-marker text-white"></i>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">北美洲鹦鹉</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- 鹦鹉1 -->
+                    <a href="species/african-grey.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                                <!--<img src="https://picsum.photos/id/1067/500/500" alt="非洲灰鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+
+                                <video src="video(18).mp4" alt="金彩虎皮鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+
+                                <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    中型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">金彩虎皮鹦鹉</h3>
+                                <p class="text-gray-600 text-sm mb-4">最聪明的鹦鹉之一，语言能力极强，能模仿各种声音</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 非洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 鹦鹉2 -->
+                    <a href="species/senegal.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                                <!-- <img src="https://picsum.photos/id/1066/500/500" alt="塞内加尔鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+
+
+
+                                <video src="video(19).mp4" alt="吃菜" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+                                <div class="absolute top-3 right-3 bg-green-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    小型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">虎皮鹦鹉吃蔬菜</h3>
+                                <p class="text-gray-600 text-sm mb-4">绿色身体，黄色和V形胸带，性格安静，适合家庭饲养</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 非洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 鹦鹉3 -->
+                    <a href="species/rose-ringed.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                                <!--  <img src="https://picsum.photos/id/1065/500/500" alt="环颈鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+
+                                 <video src="video(20).mp4" alt="吃食物" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+                                <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    中型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">牡丹鹦鹉</h3>
+                                <p class="text-gray-600 text-sm mb-4">绿色羽毛，颈部有黑色环纹，适应能力强，分布广泛</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 非洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- 鹦鹉4 -->
+                    <a href="species/rose-ringed.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                                <!--  <img src="https://picsum.photos/id/1065/500/500" alt="环颈鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+
+                                 <video src="video(21).mp4" alt="吃食物" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+                                <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    中型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">牡丹鹦鹉</h3>
+                                <p class="text-gray-600 text-sm mb-4">绿色羽毛，颈部有黑色环纹，适应能力强，分布广泛</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 非洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+<!-- 大洋洲鹦鹉 -->
+        <section class="py-16 bg-light">
+            <div class="container mx-auto px-4">
+                <div class="flex items-center mb-10">
+                    <div class="w-10 h-10 rounded-full bg-accent flex items-center justify-center mr-3">
+                        <i class="fa fa-map-marker text-white"></i>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">大洋洲鹦鹉</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- 鹦鹉1 -->
+                    <a href="species/cockatoo.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                               <!--  <img src="" alt="凤头鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+                               <video src="video(22).mp4" alt="飞手" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+
+
+
+                                <div class="absolute top-3 right-3 bg-secondary text-white text-xs font-medium px-2 py-1 rounded">
+                                    大型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">鹦鹉飞手</h3>
+                                <p class="text-gray-600 text-sm mb-4">以独特的羽冠著称，性格活泼亲人，互动性强</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 澳洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 鹦鹉2 -->
+                    <a href="species/lorikeet.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                                <!--  <img src="https://picsum.photos/id/1064/500/500" alt="牡丹鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+                                <video src="video(23).mp4" alt="飞手" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+                                <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    中型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">牡丹鹦鹉</h3>
+                                <p class="text-gray-600 text-sm mb-4">色彩鲜艳，以花蜜为食，舌头特殊，活泼好动</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 澳洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 鹦鹉3 -->
+                    <a href="species/budgerigar.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                               <!-- <img src="https://picsum.photos/id/1057/500/500" alt="母鸟喂食" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+
+                                <video src="video(24).mp4" alt="母鸟喂食" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+                                <div class="absolute top-3 right-3 bg-green-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    小型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">母鸟喂食</h3>
+                                <p class="text-gray-600 text-sm mb-4">最常见的宠物鹦鹉之一，品种多样，易于饲养</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 澳洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- 鹦鹉4 -->
+                    <a href="species/budgerigar.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                               <!-- <img src="https://picsum.photos/id/1057/500/500" alt="母鸟喂食" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+
+                                <video src="video(25).mp4" alt="牡丹喝奶" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+                                <div class="absolute top-3 right-3 bg-green-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    中型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">母鸟喂食</h3>
+                                <p class="text-gray-600 text-sm mb-4">最常见的宠物鹦鹉之一，品种多样，易于饲养</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 澳洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+<!-- 南极洲鹦鹉 -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="flex items-center mb-10">
+                    <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center mr-3">
+                        <i class="fa fa-map-marker text-white"></i>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">南极洲鹦鹉</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- 鹦鹉1 -->
+                    <a href="species/african-grey.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                                <!--<img src="https://picsum.photos/id/1067/500/500" alt="非洲灰鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+
+                                <video src="video(26).mp4" alt="金彩虎皮鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+
+                                <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    中型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">金彩虎皮鹦鹉</h3>
+                                <p class="text-gray-600 text-sm mb-4">最聪明的鹦鹉之一，语言能力极强，能模仿各种声音</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 非洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 鹦鹉2 -->
+                    <a href="species/senegal.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                                <!-- <img src="https://picsum.photos/id/1066/500/500" alt="塞内加尔鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+
+
+
+                                <video src="video(27).mp4" alt="吃菜" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+                                <div class="absolute top-3 right-3 bg-green-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    小型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">虎皮鹦鹉吃蔬菜</h3>
+                                <p class="text-gray-600 text-sm mb-4">绿色身体，黄色和V形胸带，性格安静，适合家庭饲养</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 非洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 鹦鹉3 -->
+                    <a href="species/rose-ringed.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                                <!--  <img src="https://picsum.photos/id/1065/500/500" alt="环颈鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+
+                                 <video src="video(33).mp4" alt="吃食物" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+                                <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    中型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">牡丹鹦鹉</h3>
+                                <p class="text-gray-600 text-sm mb-4">绿色羽毛，颈部有黑色环纹，适应能力强，分布广泛</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 非洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- 鹦鹉4 -->
+                    <a href="species/rose-ringed.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                                <!--  <img src="https://picsum.photos/id/1065/500/500" alt="环颈鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+
+                                 <video src="video(28).mp4" alt="吃食物" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+                                <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    中型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">牡丹鹦鹉</h3>
+                                <p class="text-gray-600 text-sm mb-4">绿色羽毛，颈部有黑色环纹，适应能力强，分布广泛</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 非洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+<!-- 中国鹦鹉 -->
+        <section class="py-16 bg-light">
+            <div class="container mx-auto px-4">
+                <div class="flex items-center mb-10">
+                    <div class="w-10 h-10 rounded-full bg-accent flex items-center justify-center mr-3">
+                        <i class="fa fa-map-marker text-white"></i>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold">中国鹦鹉</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- 鹦鹉1 -->
+                    <a href="species/cockatoo.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                               <!--  <img src="" alt="凤头鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+                               <video src="video(29).mp4" alt="飞手" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+
+
+
+                                <div class="absolute top-3 right-3 bg-secondary text-white text-xs font-medium px-2 py-1 rounded">
+                                    大型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">鹦鹉飞手</h3>
+                                <p class="text-gray-600 text-sm mb-4">以独特的羽冠著称，性格活泼亲人，互动性强</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 澳洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 鹦鹉2 -->
+                    <a href="species/lorikeet.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                                <!--  <img src="https://picsum.photos/id/1064/500/500" alt="牡丹鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+                                <video src="video(30).mp4" alt="飞手" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+                                <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    中型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">牡丹鹦鹉</h3>
+                                <p class="text-gray-600 text-sm mb-4">色彩鲜艳，以花蜜为食，舌头特殊，活泼好动</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 澳洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 鹦鹉3 -->
+                    <a href="species/budgerigar.html" class="block">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                               <!-- <img src="https://picsum.photos/id/1057/500/500" alt="母鸟喂食" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+
+                                <video src="video(31).mp4" alt="母鸟喂食" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+                                <div class="absolute top-3 right-3 bg-green-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    小型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">母鸟喂食</h3>
+                                <p class="text-gray-600 text-sm mb-4">最常见的宠物鹦鹉之一，品种多样，易于饲养</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 澳洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- 鹦鹉4 -->
+                  
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md parrot-card">
+                            <div class="relative overflow-hidden h-80">
+                               <!-- <img src="https://picsum.photos/id/1057/500/500" alt="母鸟喂食" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">-->
+
+                                <video src="video(34).mp4" alt="牡丹喝奶" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" controls></video>
+                                <div class="absolute top-3 right-3 bg-green-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                    中型
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-semibold mb-2">母鸟喂食</h3>
+                                <p class="text-gray-600 text-sm mb-4">最常见的宠物鹦鹉之一，品种多样，易于饲养</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500"><i class="fa fa-map-marker text-primary mr-1"></i> 澳洲馆</span>
+                                    <span class="text-primary font-medium">了解详情 →</span>
+                                </div>
+                            </div>
+                        </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- 分页 -->
+        <section class="py-12 bg-light">
+            <div class="container mx-auto px-4">
+                <div class="flex justify-center">
+                    <nav class="inline-flex rounded-md shadow">
+                        <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                            <i class="fa fa-chevron-left"></i>
+                        </a>
+                        <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-primary text-sm font-medium text-white">
+                            1
+                        </a>
+                        <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                            2
+                        </a>
+                        <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                            3
+                        </a>
+                        <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
+                            ...
+                        </span>
+                        <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                            8
+                        </a>
+                        <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                            <i class="fa fa-chevron-right"></i>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </section>
+
+        <!-- 订阅区域 -->
+        <section class="py-16 bg-primary text-white">
+            <div class="container mx-auto px-4">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-4">订阅鹦鹉资讯</h2>
+                    <p class="opacity-90 mb-8">获取最新的鹦鹉品种介绍、饲养知识和展览活动信息</p>
+                    <form class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
+                        <input type="email" placeholder="请输入您的邮箱地址" class="flex-grow px-5 py-3 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-white">
+                        <button type="submit" class="bg-white text-primary hover:bg-gray-100 px-6 py-3 rounded-full font-medium transition-custom shadow-lg hover:shadow-xl whitespace-nowrap">
+                            立即订阅
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- 关于我们 -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center">
+                            <i class="fa fa-paw text-primary text-xl"></i>
+                        </div>
+                        <span class="text-xl font-bold">鹦鹉世界</span>
+                    </div>
+                    <p class="text-gray-400 mb-6">国际鹦鹉展览中心致力于鹦鹉保护、科普教育和公众认知提升，通过精彩展览让更多人了解鹦鹉的魅力。</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-primary flex items-center justify-center transition-custom">
+                            <i class="fa fa-weixin"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-primary flex items-center justify-center transition-custom">
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-primary flex items-center justify-center transition-custom">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-primary flex items-center justify-center transition-custom">
+                            <i class="fa fa-youtube-play"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 快速链接 -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">快速链接</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-custom">首页</a></li>
+                        <li><a href="exhibition.html" class="text-gray-400 hover:text-white transition-custom">鹦鹉展览</a></li>
+                        <li><a href="species.html" class="text-gray-400 hover:text-white transition-custom">鹦鹉品种</a></li>
+                        <li><a href="events.html" class="text-gray-400 hover:text-white transition-custom">活动日程</a></li>
+                        <li><a href="education.html" class="text-gray-400 hover:text-white transition-custom">科普教育</a></li>
+                        <li><a href="visit.html" class="text-gray-400 hover:text-white transition-custom">参观指南</a></li>
+                        <li><a href="tickets.html" class="text-gray-400 hover:text-white transition-custom">在线购票</a></li>
+                    </ul>
+                </div>
+                
+                <!-- 帮助中心 -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">帮助中心</h4>
+                    <ul class="space-y-3">
+                        <li><a href="faq.html" class="text-gray-400 hover:text-white transition-custom">常见问题</a></li>
+                        <li><a href="visit.html#directions" class="text-gray-400 hover:text-white transition-custom">交通指南</a></li>
+                        <li><a href="visit.html#rules" class="text-gray-400 hover:text-white transition-custom">参观须知</a></li>
+                        <li><a href="group.html" class="text-gray-400 hover:text-white transition-custom">团体预约</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-custom">联系我们</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-white transition-custom">隐私政策</a></li>
+                    </ul>
+                </div>
+                
+                <!-- 联系我们 -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">联系我们</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fa fa-map-marker text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-400">上海市闵行区浦江镇江汉路滨浦新苑</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-phone text-primary mr-3"></i>
+                            <span class="text-gray-400">15971017554</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-envelope text-primary mr-3"></i>
+                            <span class="text-gray-400">863240195@qq.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-clock-o text-primary mr-3"></i>
+                            <span class="text-gray-400">每日9:00-20:00（节假日不休）</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2023 鹦鹉世界国际展览中心. 保留所有权利.</p>
+                    <div class="flex space-x-6">
+                        <a href="terms.html" class="text-gray-500 hover:text-gray-300 text-sm transition-custom">服务条款</a>
+                        <a href="privacy.html" class="text-gray-500 hover:text-gray-300 text-sm transition-custom">隐私政策</a>
+                        <a href="about.html" class="text-gray-500 hover:text-gray-300 text-sm transition-custom">关于我们</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary hover:bg-primary/90 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg z-50 transition-custom opacity-0 invisible">
+        <i class="fa fa-chevron-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // 移动端菜单切换
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 筛选按钮交互
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // 移除同组所有按钮的活跃状态
+                const parentGroup = button.parentElement;
+                parentGroup.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('bg-primary', 'text-white');
+                    btn.classList.add('bg-gray-100', 'hover:bg-gray-200');
+                });
+                
+                // 设置当前按钮为活跃状态
+                button.classList.remove('bg-gray-100', 'hover:bg-gray-200');
+                button.classList.add('bg-primary', 'text-white');
+            });
+        });
+        
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.remove('shadow-sm');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.add('shadow-sm');
+            }
+        });
+        
+        // 返回顶部按钮
+        const backToTopBtn = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.remove('opacity-0', 'invisible');
+                backToTopBtn.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'invisible');
+                backToTopBtn.classList.remove('opacity-100', 'visible');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+    
