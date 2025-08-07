@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>牡丹鹦鹉 - 鹦鹉品种 - 鹦鹉世界</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#FF7D00',
+                        accent: '#36B37E',
+                        dark: '#172B4D',
+                        light: '#F4F5F7'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .transition-custom {
+                transition: all 0.3s ease;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-inter bg-light text-dark antialiased">
+    <!-- 导航栏 -->
+    <header id="navbar" class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm transition-custom">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16 md:h-20">
+                <!-- Logo -->
+                <a href="../index.html" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+                        <i class="fa fa-paw text-white text-xl"></i>
+                    </div>
+                    <span class="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">鹦鹉世界</span>
+                </a>
+                
+                <!-- 桌面导航 -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="font-medium text-gray-600 hover:text-primary transition-custom py-1">首页</a>
+                    <a href="exhibition.html" class="font-medium text-gray-600 hover:text-primary transition-custom py-1">鹦鹉展览</a>
+                    <a href="species.html" class="font-medium text-primary border-b-2 border-primary py-1">鹦鹉品种</a>
+                    <a href="events.html" class="font-medium text-gray-600 hover:text-primary transition-custom py-1">活动日程</a>
+                    <a href="education.html" class="font-medium text-gray-600 hover:text-primary transition-custom py-1">科普教育</a>
+                    <a href="visit.html" class="font-medium text-gray-600 hover:text-primary transition-custom py-1">参观指南</a>
+                </nav>
+                
+                <!-- 快捷功能 -->
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 text-gray-600 hover:text-primary transition-custom relative">
+                        <i class="fa fa-search text-lg"></i>
+                    </button>
+                    <a href="../tickets.html" class="hidden md:block bg-secondary hover:bg-secondary/90 text-white px-4 py-2 rounded-full transition-custom">
+                        购票
+                    </a>
+                    <!-- 移动端菜单按钮 -->
+                    <button id="menu-toggle" class="md:hidden p-2 text-gray-600 hover:text-primary transition-custom">
+                        <i class="fa fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-3 space-y-3">
+                <a href="../index.html" class="block py-2 font-medium text-gray-600 hover:text-primary transition-custom">首页</a>
+                <a href="../exhibition.html" class="block py-2 font-medium text-gray-600 hover:text-primary transition-custom">鹦鹉展览</a>
+                <a href="../species.html" class="block py-2 font-medium text-primary">鹦鹉品种</a>
+                <a href="../events.html" class="block py-2 font-medium text-gray-600 hover:text-primary transition-custom">活动日程</a>
+                <a href="../education.html" class="block py-2 font-medium text-gray-600 hover:text-primary transition-custom">科普教育</a>
+                <a href="../visit.html" class="block py-2 font-medium text-gray-600 hover:text-primary transition-custom">参观指南</a>
+                <a href="../tickets.html" class="block text-center bg-secondary hover:bg-secondary/90 text-white px-4 py-2 rounded-full transition-custom">
+                    购票
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 页面标题 -->
+        <section class="py-12 bg-primary text-white">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                    <div>
+                        <h1 class="text-[clamp(1.8rem,4vw,3rem)] font-bold mb-2">牡丹鹦鹉</h1>
+                        <p class="opacity-90">非洲 · 中型鹦鹉 · 美洲馆展出</p>
+                    </div>
+                    <a href="species.html" class="mt-4 md:mt-0 inline-flex items-center bg-white text-primary hover:bg-gray-100 px-5 py-2 rounded-full transition-custom font-medium">
+                        <i class="fa fa-arrow-left mr-2"></i> 返回品种列表
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 鹦鹉详情 -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                    <!-- 左侧图片/视频区域 -->
+<div class="space-y-6">
+    <div class="rounded-xl overflow-hidden shadow-lg">
+       
+    </div>
+    <div class="grid grid-cols-50 gap-25">
+        <div class="rounded-lg overflow-hidden shadow-md cursor-pointer hover:opacity-40 transition-custom">
+            <!-- 只保留一个高度属性h-48，并可根据需要调整数值 -->
+            <video src="da46dea60171b2d582bd036b0e67354e.mp4" 
+                   alt="牡丹.金头澳闪鹦鹉" 
+                   class="w-full h-96 object-cover transition-transform duration-52 hover:scale-10" 
+                   controls>
+            </video>
+        </div>
+    </div>
+</div>
+
+                    <!-- 右侧信息区域 -->
+                    <div>
+                        <div class="bg-light p-6 rounded-xl mb-6">
+                            <h2 class="text-2xl font-bold mb-4">基本信息</h2>
+                            <div class="space-y-4">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">学名</span>
+                                    <span class="font-medium">爱情鸟.情侣牡丹鹦鹉</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">分布区域</span>
+                                    <span class="font-medium">非洲中南部地区，坦桑尼亚北部、赛伦盖提国家公园</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">体型大小</span>
+                                    <span class="font-medium">体长约10-16厘米，体重平均约57克</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">平均寿命</span>
+                                    <span class="font-medium">寿命15-20年</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">保护级别</span>
+                                    <span class="font-medium">无危（LC）</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">展区位置</span>
+                                    <span class="font-medium text-primary">美洲馆 - 热带雨林区</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <h2 class="text-2xl font-bold mb-4">物种简介</h2>
+                            <p class="text-gray-700 leading-relaxed mb-4">
+                                牡丹鹦鹉（学名：Agapornis）是鹦鹉目、鹦鹉科下的一属小型鸟类，又名爱情鸟或情侣鹦鹉，以其艳丽的羽色和对伴侣的忠贞闻名，主要分布于非洲大陆及马达加斯加岛。
+牡丹鹦鹉体长约10-16厘米，体重50-80克，喙呈钩状且多为红色，羽色以绿色为主，头部可能为红、灰、棕或黑色，部分品种具白眼圈。其脚为对生趾结构（两趾向前、两趾向后），适应攀爬生活。寿命通常为15-20年
+                            </p>
+                            <p class="text-gray-700 leading-relaxed">
+                                牡丹鹦鹉属常栖息于热带丛林中，喜集体活动；以各种植物种子、水果及浆果为食；营巢在树的枝杈、树洞穴以及岩石裂隙。有些物种在一起筑巢，而另一些物种则成对在远离族群的地方筑巢。情侣是一雄一雌制，会在整个生命周期内保持联系。雄性通常会通过喂雌性小块食物来讨好雌性，有些物种会通过跳舞和唱歌来赢得雌性。性成熟后，全年可繁殖；每年可繁殖3-5窝，每窝4-6枚卵，孵化期18-19天。主要分布在马达加斯加、坦桑尼亚、乌干达、埃塞俄比亚、苏丹等地
+                            </p>
+                        </div>
+
+                        <div class="mb-6">
+                            <h2 class="text-2xl font-bold mb-4">生活习性</h2>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fa fa-check-circle text-accent mt-1 mr-2"></i>
+                                    <span>主要栖息在海拔1500米以下的干燥林地内，从次沙漠地带的干燥草原、热带草原林地、岩石地形区、河流旁的林地、棕榈树林到农作物区都是常活动的范围，主要的栖息处都在水源区附近。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check-circle text-accent mt-1 mr-2"></i>
+                                    <span>是一夫一妻制，配对后通常会相伴终生，</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check-circle text-accent mt-1 mr-2"></i>
+                                    <span>牡丹鹦鹉约在交配10天后会生下第一枚卵，每隔一天下一枚卵，一窝约产4-6枚卵，在产下第一枚卵后约3周多时间就开始孵化。仅雌鸟孵卵，孵化期约21-23天，30-35天后幼鸟羽毛长成，孵化后，亲鸟双方都会照顾幼鸟，直到它们在孵化后大约一个月大时</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check-circle text-accent mt-1 mr-2"></i>
+                                    <span>具有较强的领地意识，会通过叫声宣示领地</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <a href="../visit.html" class="inline-block bg-secondary hover:bg-secondary/90 text-white px-6 py-3 rounded-full transition-custom font-medium">
+                                查看参观信息 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 相关品种推荐 -->
+        <section class="py-16 bg-light">
+            <div class="container mx-auto px-4">
+                <h2 class="text-2xl md:text-3xl font-bold mb-8">相关鹦鹉品种</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- 相关品种1 -->
+                    
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md">
+                            <div class="relative overflow-hidden h-56">
+                                <img src="66b1261387b67161ae1af3920309260c.jpg" alt="牡丹鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold">金头澳闪鹦鹉</h3>
+                                <p class="text-gray-600 text-sm mt-1">南美洲 · 大型</p>
+                            </div>
+                        </div>
+                    
+                    
+                    <!-- 相关品种2 -->
+                   
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md">
+                            <div class="relative overflow-hidden h-56">
+                                <img src="580cc5eae9a5b10d242322c0aeac740f.jpg" alt="牡丹鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold">金头澳闪鹦鹉</h3>
+                                <p class="text-gray-600 text-sm mt-1">南美洲 · 大型</p>
+                            </div>
+                        </div>
+                    
+                    
+                    <!-- 相关品种3 -->
+                   
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md">
+                            <div class="relative overflow-hidden h-56">
+                                <img src="b61adf0daa48ee260241e70a9d4b7e76.jpg" alt="牡丹鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold">紫伊莎</h3>
+                                <p class="text-gray-600 text-sm mt-1">南美洲 · 中型</p>
+                            </div>
+                        </div>
+                    
+                    
+                    <!-- 相关品种4 -->
+                   
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md">
+                            <div class="relative overflow-hidden h-56">
+                                <img src="ed8400aafd1241d3eee94f6fa029df3d.jpg" alt="虎皮鹦鹉" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold">金彩虎皮鹦鹉</h3>
+                                <p class="text-gray-600 text-sm mt-1">非洲 · 中型</p>
+                            </div>
+                        </div>
+                    
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+                            <i class="fa fa-paw text-white text-xl"></i>
+                        </div>
+                        <span class="text-xl font-bold">鹦鹉世界</span>
+                    </div>
+                    <p class="text-gray-400 mb-6">探索鹦鹉的奇妙世界，了解这些美丽生灵的生活习性与独特魅力。</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-custom">
+                            <i class="fa fa-weixin"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-custom">
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-custom">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-custom">
+                            <i class="fa fa-youtube-play"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">快速链接</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-custom">首页</a></li>
+                        <li><a href="exhibition.html" class="text-gray-400 hover:text-white transition-custom">鹦鹉展览</a></li>
+                        <li><a href="species.html" class="text-gray-400 hover:text-white transition-custom">鹦鹉品种</a></li>
+                        <li><a href="events.html" class="text-gray-400 hover:text-white transition-custom">活动日程</a></li>
+                        <li><a href="education.html" class="text-gray-400 hover:text-white transition-custom">科普教育</a></li>
+                        <li><a href="guide.html" class="text-gray-400 hover:text-white transition-custom">参观指南</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">参观信息</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fa fa-map-marker text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-400">上海市闵行区浦江镇江汉路滨浦新苑</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-clock-o text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-400">9:00 - 20:00（周一闭园）</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-phone text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-400">010-12345678</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-envelope text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-400">info@parrotworld.com</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">订阅资讯</h3>
+                    <p class="text-gray-400 mb-4">订阅我们的电子通讯，获取最新活动和鹦鹉资讯</p>
+                    <form class="mb-4">
+                        <div class="flex">
+                            <input type="email" placeholder="您的邮箱地址" class="px-4 py-2 rounded-l-lg w-full focus:outline-none text-dark">
+                            <button type="submit" class="bg-primary hover:bg-primary/90 px-4 py-2 rounded-r-lg transition-custom">
+                                <i class="fa fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
+                    <p class="text-gray-500 text-sm">我们尊重您的隐私，不会向第三方分享您的信息</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2023 鹦鹉世界 版权所有 | 京ICP备12345678号</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 移动端菜单切换
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.remove('shadow-sm');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.add('shadow-sm');
+            }
+        });
+    </script>
+</body>
+</html>
